@@ -1,14 +1,21 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  
+  Rails.application.routes.draw do
+  # 施設
+  resources :rooms do
+    collection do
+      get :search      # /rooms/search → rooms#search
+    end
+  end
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+  # トップの「おすすめエリア」用
+  get 'tokyo_rooms',   to: 'rooms#tokyo_index',   as: 'tokyo_rooms'
+  get 'osaka_rooms',   to: 'rooms#osaka_index',   as: 'osaka_rooms'
+  get 'kyoto_rooms',   to: 'rooms#kyoto_index',   as: 'kyoto_rooms'
+  get 'sapporo_rooms', to: 'rooms#sapporo_index', as: 'sapporo_rooms'
 
-  # Render dynamic PWA files from app/views/pwa/*
-  get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-  get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
+  # トップページ
+  root 'pages#home'
+end
 
-  # Defines the root path route ("/")
-  # root "posts#index"
 end

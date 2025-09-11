@@ -1,0 +1,29 @@
+<div class="hero">
+  <h1>Potepan Shareで<br>まだ体験したことのない<br>旅をしよう</h1>
+
+  <!-- 検索フォーム（GET） -->
+  <%= form_with url: search_rooms_path, method: :get, local: true do %>
+    <div style="margin-bottom:10px;">
+      <%= label_tag :area, 'エリア' %>
+      <%= text_field_tag :area, params[:area].to_s.strip.gsub(/[\t[:space:]]|\u3000/, ''), placeholder: '例：東京' %>
+    </div>
+
+    <div style="margin-bottom:10px;">
+      <%= label_tag :keyword, 'キーワード' %>
+      <%= text_field_tag :keyword, params[:keyword].to_s.strip.gsub(/[\t[:space:]]|\u3000/, ''), placeholder: '例：ホテル' %>
+    </div>
+
+    <%= submit_tag '検索' %>
+  <% end %>
+</div>
+
+<!-- おすすめのエリア -->
+<div class="recommended-areas">
+  <h2>おすすめのエリア</h2>
+  <ul>
+    <li><%= link_to '東京', tokyo_rooms_path %></li>
+    <li><%= link_to '大阪', osaka_rooms_path %></li>
+    <li><%= link_to '京都', kyoto_rooms_path %></li>
+    <li><%= link_to '札幌', sapporo_rooms_path %></li>
+  </ul>
+</div>

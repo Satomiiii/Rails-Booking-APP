@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Booking App" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Potepan Share</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= yield :head %>
-
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <!-- JSはdeferを付けてヘッドに読み込む例 -->
+    <%= javascript_pack_tag 'application', defer: true %>
   </head>
 
   <body>
+    <header class="navbar">
+      <%= link_to image_tag('logo.png'), root_path, class: 'logo' %>
+
+      <!-- 認証機能導入前は固定リンクのみ -->
+      <div class="auth-links">
+        <%= link_to 'ログイン', '#', class: 'btn btn-login' %>
+        <%= link_to '新規登録', '#', class: 'btn btn-signup' %>
+      </div>
+    </header>
+
     <%= yield %>
   </body>
 </html>
