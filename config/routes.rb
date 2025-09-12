@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'rooms/index'
+  get 'rooms/show'
+  get 'rooms/new'
+  get 'rooms/create'
   get 'users/show'
   get 'users/edit'
   get 'users/update'
