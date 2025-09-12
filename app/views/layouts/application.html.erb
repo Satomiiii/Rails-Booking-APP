@@ -6,21 +6,59 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <!-- JSはdeferを付けてヘッドに読み込む例 -->
-    <%= javascript_pack_tag 'application', defer: true %>
+    <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
-    <header class="navbar">
-      <%= link_to image_tag('logo.png'), root_path, class: 'logo' %>
 
-      <!-- 認証機能導入前は固定リンクのみ -->
-      <div class="auth-links">
-        <%= link_to 'ログイン', '#', class: 'btn btn-login' %>
-        <%= link_to '新規登録', '#', class: 'btn btn-signup' %>
-      </div>
-    </header>
+ <header>
+  <div class="header-content">
+    <%= link_to image_tag("logo.png", alt: "Potepan Share"), root_path, class: "logo" %>
+    
 
-    <%= yield %>
-  </body>
+  <% if user_signed_in? %>
+  <div class="user-info">
+
+    <a href="#" class="dropdown-toggle" id="dropdownMenuLink">
+      
+      
+      <%= image_tag(current_user.icon.attached? ? url_for(current_user.icon) : asset_path('default-icon.png'), class: 'user-icon') %>
+
+     <span class="user-name"><%= current_user.name %></span>
+    </a>
+
+   <div class="dropdown-menu" id="dropdownMenu">
+    <%= link_to '施設の新規登録', new_room_path, class: 'dropdown-item' %>
+    <%= link_to '予約済み一覧', reservations_path, class: 'dropdown-item' %>
+    <%= link_to '登録済み一覧', rooms_path, class: 'dropdown-item' %>
+    <%= link_to 'アカウント設定', account_user_path(current_user), class: 'dropdown-item' %>
+    <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+ </div>
+
+</div>
+
+
+ <% else %>
+  <div class="auth-links">
+    <%= link_to 'ログイン', new_user_session_path, class: 'btn btn-login' %>
+    <%= link_to '新規登録', new_user_registration_path, class: 'btn btn-signup' %>
+  </div>
+ <% end %>
+
+
+  </div>
+</header>
+
+<body>
+  <%= yield %>
+
+  <!-- JavaScriptをbody末尾で読み込み -->
+  <%= javascript_pack_tag 'application' %>
+</body>
+    
+
 </html>
+
+
+
+
