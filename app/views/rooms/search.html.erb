@@ -1,0 +1,48 @@
+<p style="font-size:18px; margin:20px 0;">
+  <strong><%= @count %></strong> 件が見つかりました。
+</p>
+
+<% if @count > 0 %>
+  <div class="room-list" style="display:flex; flex-wrap:wrap; gap:24px;">
+    <% @rooms.each do |room| %>
+      <div class="room-card" style="width:360px; background:#fdf8f3; border-radius:16px; overflow:hidden; box-shadow:2px 8px 20px rgba(0,0,0,.1);">
+        
+        <!-- 画像 -->
+        <% if room.image.attached? %>
+          <%= image_tag room.image.variant(resize_to_fill: [360, 220]).processed, style: 'width:100%; height:220px; object-fit:cover;' %>
+        <% else %>
+          <%= image_tag 'room.png', style: 'width:100%; height:220px; object-fit:cover;' %>
+        <% end %>
+
+        <div style="padding:16px;">
+          <!-- ホテル名 -->
+          <h3 style="font-size:20px; margin:0 0 8px;">
+            <%= room.name.presence || '名称未設定' %>
+          </h3>
+
+          <!-- 住所 -->
+          <p style="color:#777; margin:0 0 12px;">
+            <%= room.address.presence || '住所未設定' %>
+          </p>
+
+          <!-- 説明文の一部 -->
+          <p style="font-size:14px; line-height:1.7; margin:0 0 12px;">
+            <%= truncate(room.description.to_s, length: 80) %>
+          </p>
+
+          <!-- 値段 -->
+          <p style="color:#e35c1a; font-weight:bold; font-size:20px; margin:0 0 12px;">
+            <%= number_to_currency(room.price, unit: '¥', precision: 0) %>〜
+          </p>
+
+          <!-- 詳細ページ -->
+          <%= link_to '詳細はこちら', room_path(room),
+              class: 'room-detail-btn',
+              style: 'display:inline-block; padding:10px 16px; background:#ff7750; color:#111; text-decoration:none; border-radius:8px;' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>該当する施設が見つかりませんでした。</p>
+<% end %>
