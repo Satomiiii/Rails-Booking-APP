@@ -1,0 +1,21 @@
+<h2>予約内容の確認</h2>
+
+
+
+<%= form_with model: @reservation, url: room_reservations_path(@room), method: :post do |f| %>
+  <%= f.hidden_field :check_in %>
+  <%= f.hidden_field :check_out %>
+  <%= f.hidden_field :guests %>
+  <%= f.hidden_field :room_id, value: @room.id %>
+  <p>チェックイン: <%= @reservation.check_in %></p>
+  <p>チェックアウト: <%= @reservation.check_out %></p>
+  <p>日数: <%= (@reservation.check_out.to_date - @reservation.check_in.to_date).to_i %>日</p>
+  <p>人数: <%= @reservation.guests %>人</p>
+  <p>お支払い金額: ¥<%= @reservation.total_amount %></p>
+ <%= f.submit '予約を確定', class: 'btn btn-primary' %>
+ <%= link_to 'キャンセル', room_path(@room), class: 'btn btn-secondary' %> 
+
+<% end %>
+
+
+

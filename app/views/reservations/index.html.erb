@@ -1,0 +1,40 @@
+<h2 class="page-title">予約済み一覧</h2>
+
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>画像</th>
+      <th>施設名</th>
+      <th>紹介文</th>
+      <th>合計料金</th>
+      <th>チェックイン</th>
+      <th>チェックアウト</th>
+      <th>予約確定日時</th>
+    </tr>
+  </thead>
+<tbody>
+    <% if @reservations.present? %>
+      <% @reservations.each do |reservation| %>
+        <tr>
+          <td><%= image_tag reservation.room.image.attached? ? reservation.room.image : 'room.png', size: '100x100', class: 'table-image' %></td>
+          <td><%= link_to reservation.room.name, room_path(reservation.room), class: 'room-link' %></td>
+          <td><%= truncate(reservation.room.description, length: 60) %></td>
+
+          <!-- ✅ 合計料金計算 -->
+          <% nights = (reservation.check_out - reservation.check_in).to_i %>
+          <% total_price = reservation.room.price * reservation.guests * nights %>
+          <td>¥<%= number_with_delimiter(total_price) %></td>
+
+          <td><%= reservation.check_in&.strftime('%Y/%m/%d') || '未設定' %></td>
+          <td><%= reservation.check_out&.strftime('%Y/%m/%d') || '未設定' %></td>
+          <td><%= reservation.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+        </tr>
+      <% end %>
+
+    <% else %>
+      <tr>
+        <td colspan="8">予約が見つかりません。</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
