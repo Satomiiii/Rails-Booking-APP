@@ -1,7 +1,9 @@
 # config/routes.rb
 Rails.application.routes.draw do
+
   # Devise
   devise_for :users, controllers: { registrations: 'registrations' }
+  # ↑ sign_out はデフォルトで DELETE /users/sign_out です
 
   # 施設
   resources :rooms do
@@ -9,10 +11,10 @@ Rails.application.routes.draw do
       get :search   # /rooms/search → rooms#search
     end
 
-    # 予約（部屋配下：confirm の room付きパスヘルパを作る）
+    # 予約（部屋配下: confirm の room付きパスヘルパを作る）
     resources :reservations, only: [:new, :create] do
       collection do
-        post :confirm  # confirm_room_reservations_path(@room)
+        post :confirm # confirm_room_reservations_path(@room)
       end
     end
   end
@@ -29,7 +31,7 @@ Rails.application.routes.draw do
       get   :profile
       patch :update_profile
       # プロフィール編集への別名ルートを使っている場合
-      get   :edit_profile, to: 'users#edit_profile', as: :edit_profile
+      get :edit_profile, to: 'users#edit_profile', as: :edit_profile
     end
   end
 

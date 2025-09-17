@@ -12,28 +12,38 @@
       <th>予約確定日時</th>
     </tr>
   </thead>
-<tbody>
+  <tbody>
     <% if @reservations.present? %>
       <% @reservations.each do |reservation| %>
         <tr>
-          <td><%= image_tag reservation.room.image.attached? ? reservation.room.image : 'room.png', size: '100x100', class: 'table-image' %></td>
-          <td><%= link_to reservation.room.name, room_path(reservation.room), class: 'room-link' %></td>
-          <td><%= truncate(reservation.room.description, length: 60) %></td>
+          <td>
+            <%= image_tag(
+                  reservation.room&.image&.attached? ? reservation.room.image : 'room.png',
+                  size: '100x100',
+                  class: 'table-image'
+                ) %>
+          </td>
 
-          <!-- ✅ 合計料金計算 -->
-          <% nights = (reservation.check_out - reservation.check_in).to_i %>
-          <% total_price = reservation.room.price * reservation.guests * nights %>
-          <td>¥<%= number_with_delimiter(total_price) %></td>
+          <td>
+            <%= link_to reservation.room.name, room_path(reservation.room), class: 'room-link' %>
+          </td>
 
-          <td><%= reservation.check_in&.strftime('%Y/%m/%d') || '未設定' %></td>
-          <td><%= reservation.check_out&.strftime('%Y/%m/%d') || '未設定' %></td>
-          <td><%= reservation.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+          <td>
+            <%= truncate(reservation.room.description.to_s, length: 60) %>
+          </td>
+
+          <td>
+            <%= number_to_currency(reservation.total_price, unit: '¥', precision: 0, format: '%u%n') %>
+          </td>
+
+          <td><%= reservation.check_in_ymd %></td>
+          <td><%= reservation.check_out_ymd %></td>
+          <td><%= reservation.confirmed_at_ymdhm %></td>
         </tr>
       <% end %>
-
     <% else %>
       <tr>
-        <td colspan="8">予約が見つかりません。</td>
+        <td colspan="7">予約が見つかりません。</td>
       </tr>
     <% end %>
   </tbody>

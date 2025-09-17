@@ -1,0 +1,22 @@
+<div class="settings">
+  <nav>
+    <%= link_to 'アカウント',  account_user_path(@user) %>
+    <%= link_to 'プロフィール', profile_user_path(@user), class: 'active' %>
+  </nav>
+
+  <div class="content">
+    <h2>プロフィール</h2>
+
+    <p>
+      アイコン画像：
+      <%= image_tag(@user.icon.attached? ? @user.icon : 'default-icon.png',
+                    size: '80x80',
+                    style: 'border-radius:50%;object-fit:cover;background:#eee;') %>
+    </p>
+
+    <p>名前：<%= @user.name %></p>
+    <p>自己紹介：<%= @user.self_introduction.to_s.presence || '未入力' %></p>
+
+    <%= link_to '編集', edit_profile_user_path(@user), class: 'edit-button' %>
+  </div>
+</div>

@@ -21,39 +21,40 @@
 
 <div class="booking-section">
   <% if user_signed_in? %>
-    <%# フォーム %>
     <%= form_with model: @reservation,
                   url: confirm_room_reservations_path(@room),
                   method: :post,
+                  scope: :reservation,
                   local: true do |f| %>
+      <%# これで params[:reservation] の下に値が入る %>
 
       <%= f.hidden_field :room_id, value: @room.id %>
 
       <p>
         チェックイン：
         <%= f.date_field :check_in,
-                         min:  Date.today,
-                         value: (@reservation.check_in || params[:check_in]) %>
+                         min: Date.today,
+                         value: (@reservation&.check_in || params[:check_in]) %>
       </p>
 
       <p>
         チェックアウト：
         <% min_checkout =
              begin
-               ( (@reservation.check_in || params[:check_in]).to_date + 1 )
+               ((@reservation&.check_in || params[:check_in])&.to_date || Date.today) + 1
              rescue
                Date.today + 1
              end %>
         <%= f.date_field :check_out,
-                         min:  min_checkout,
-                         value: (@reservation.check_out || params[:check_out]) %>
+                         min: min_checkout,
+                         value: (@reservation&.check_out || params[:check_out]) %>
       </p>
 
       <p>
         人数：
         <%= f.number_field :guests,
                            min: 1,
-                           value: (@reservation.guests.presence || params[:guests] || 1) %>
+                           value: (@reservation&.guests.presence || params[:guests] || 1) %>
       </p>
 
       <%= f.submit '予約確認', class: 'btn btn-primary' %>

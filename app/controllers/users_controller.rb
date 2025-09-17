@@ -1,66 +1,49 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user
 
-  def show
-    @user = current_user
-  end
+  # /users/:id
+  def show; end
 
-  def edit_account
-    @user = current_user
-  end
+  # /users/:id/account（メール/パスワード表示）
+  def account; end
 
-  def update_account
-    @user = current_user
-    if @user.update(user_params)
-      redirect_to user_path(@user), notice: 'アカウント情報が更新されました'
-    else
-      render :edit_account
-    end
-  end
+  # /users/:id/profile（プロフィール表示）
+  def profile; end
 
-  def edit_profile
-    @user = current_user
-  end
+  # /users/:id/edit_profile（編集フォーム表示）
+  def edit_profile; end
 
+  # PATCH /users/:id/update_profile（更新）
   def update_profile
-    @user = current_user
     if @user.update(profile_params)
-      redirect_to user_path(@user), notice: 'プロフィールが更新されました'
+      redirect_to account_user_path(@user), notice: 'プロフィールを更新しました。'
     else
       render :edit_profile
     end
   end
 
-  private
-
-  def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+  # （メール/パスワード編集は Devise 画面に委譲）
+  def edit_account
+    redirect_to edit_user_registration_path
   end
 
-  def profile_params
-    params.require(:user).permit(:name, :icon, :introduction) 
-  end
-
-  before_action :set_user, only: [:show, :edit, :update, :account, :profile]
-
-  def account
-    # アカウントページ表示用の処理
-  end
-
-  def profile
-    # プロフィールページ表示用の処理
+  def update_account
+    redirect_to edit_user_registration_path
   end
 
   private
 
   def set_user
-    @user = User.find(params[:id])
-  end
-
-  def set_user
+    # 自分以外のページを弾く
     @user = current_user
+    if params[:id].present? && @user.id.to_s != params[:id].to_s
+      redirect_to root_path, alert: '権限がありません'
+    end
   end
-  
+
+  # ★ self_introduction を許可（ここがポイント）
+  def profile_params
+    params.require(:user).permit(:name, :icon, :self_introduction)
+  end
 end
-
-

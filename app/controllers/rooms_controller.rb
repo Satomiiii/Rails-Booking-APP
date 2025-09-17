@@ -76,6 +76,8 @@ class RoomsController < ApplicationController
     @rooms = Room.where("address LIKE ?", "%東京%")
                  .order(created_at: :desc)
                  .includes(image_attachment: :blob)
+    @count = @rooms.size
+    render :search        
   end
 
   def osaka_index
@@ -88,6 +90,8 @@ class RoomsController < ApplicationController
     @rooms = Room.where("address LIKE ?", "%大阪%")
                  .order(created_at: :desc)
                  .includes(image_attachment: :blob)
+    @count = @rooms.size
+    render :search  
   end
 
   def kyoto_index
@@ -100,6 +104,8 @@ class RoomsController < ApplicationController
     @rooms = Room.where("address LIKE ?", "%京都%")
                  .order(created_at: :desc)
                  .includes(image_attachment: :blob)
+    @count = @rooms.size
+    render :search  
   end
 
   def sapporo_index
@@ -112,6 +118,8 @@ class RoomsController < ApplicationController
     @rooms = Room.where("address LIKE ?", "%札幌%")
                  .order(created_at: :desc)
                  .includes(image_attachment: :blob)
+    @count = @rooms.size
+    render :search  
   end
 
   private
