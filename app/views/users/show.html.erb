@@ -1,0 +1,15 @@
+<div class="account-settings">
+  <h2>アカウント</h2>
+  <div class="account-info">
+    <div>
+      <strong>メールアドレス:</strong>
+      <span><%= @user.email %></span>
+    </div>
+    <div>
+      <strong>パスワード:</strong>
+      <span>*********</span>
+    </div>
+    <%= link_to '編集', edit_profile_user_path(@user), class: 'edit-button' %>
+
+  </div>
+</div>

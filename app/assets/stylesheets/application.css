@@ -1,15 +1,383 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+.hero {
+    text-align: center;
+    padding: 100px 0;
+    background-color: #f5f5f5;
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+    line-height: 1.5;
+  }
+  
+  .search-box {
+    margin-top: 20px;
+  }
+  
+  .search-box input {
+    padding: 10px;
+    font-size: 1rem;
+    width: 300px;
+  }
+  
+  .search-box button {
+    padding: 10px 20px;
+    background-color: #ff5a5f;
+    color: white;
+    border: none;
+  }
+  
+  .recommended-areas {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .recommended-areas ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .recommended-areas ul li {
+    display: inline-block;
+    margin: 10px 20px;
+    font-size: 1.5rem;
+  }
+  
+
+
+/* ヘッダー全体のスタイル */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2C3E50; /* 2枚目の画像に合わせた濃い青色 */
+    padding: 10px 30px;
+  }
+  
+  /* ロゴのスタイル */
+  .logo img {
+    height: 50px; /* ロゴの高さを調整 */
+  }
+  
+  /* ナビゲーションリンクのスタイル */
+  .nav-links ul {
+    list-style: none;
+    display: flex;
+    gap: 20px; /* リンク間のスペース */
+  }
+  
+  .nav-links ul li {
+    display: inline;
+  }
+  
+  .nav-links ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  /* ホバー時のスタイル */
+  .nav-links ul li a:hover {
+    color: #FF5A5F; /* ボタンやリンクの色に合わせたアクセントカラー */
+  }
+  
+
+
+  .account-settings {
+    padding: 20px;
+  
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  
+    .account-info {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 10px;
+  
+      div {
+        margin-bottom: 10px;
+      }
+  
+      .edit-link {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #ff6b6b;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+    }
+  }
+  
+
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #2c3e50;
+  }
+  
+  .user-info {
+    position: relative;
+  }
+  
+  .user-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  
+  .user-name {
+    margin-left: 10px;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+
+
+
+  /* ドロップダウンメニュー関連 */
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    padding: 10px;
+    z-index: 1000;
+    white-space: nowrap; /* 横並び用 */
+    writing-mode: horizontal-tb; /* ← これを明示 */
+  }
+  
+
+
+
+
+  
+  /* メニューを表示させるためのクラス */
+  .dropdown-menu.show {
+    display: block;
+  }
+  
+  /* その他はOK */
+  .dropdown-item {
+    display: inline-block;  /* ← 縦に並んでいたら block ではなく inline-block に */
+    padding: 5px 10px;
+    color: #333;
+    text-decoration: none;
+  }
+
+
+  .dropdown-item:hover {
+    background-color: #f8f8f8;
+  }
+  
+  
+  /* .user-info:hover .dropdown-menu { */
+    /* display: block; */
+  /* } */
+  
+
+
+
+
+
+
+
+
+  .account-settings, .profile-settings {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  
+  .account-info div, .profile-info div {
+    margin-bottom: 10px;
+  }
+  
+  .edit-link, .save-button, .cancel-button {
+    background-color: #ff5a5f;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+
+
+  .settings nav {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .settings nav a {
+    text-decoration: none;
+    padding: 10px;
+    color: #333;
+  }
+  
+  .settings nav a.active {
+    border-bottom: 2px solid #ff5a5f;
+  }
+  
+  
+
+
+
+
+
+
+
+.page-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.styled-table th,
+.styled-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.styled-table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+.table-image {
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.room-link {
+  font-weight: bold;
+  color: #3b3bff;
+  text-decoration: underline;
+}
+
+
+
+.search-box {
+  max-width: 400px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.search-field {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.search-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff6f5e;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+
+
+.auth-links {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-right: 20px;
+}
+
+
+
+.btn {
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #ffffff;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.btn-primary {
+  background-color: #ff6f3c; /* 明るめのオレンジ系 */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #ff5a1f; /* ホバー時に少し濃くする */
+}
+
+
+
+
+.btn-login {
+  background-color: #007bff;
+}
+
+.btn-signup {
+  background-color: #28a745;
+}
+
+
+.btn-secondary {
+  background-color: #cccccc;  /* 薄いグレー */
+  color: #333333;             /* 濃いグレー文字 */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #aaaaaa;  /* ホバー時に少し濃く */
+}
+
+
+.room-card {
+  width: 30%;
+  display: inline-block;
+  margin: 1%;
+  vertical-align: top;
+  background: #fdf8f3;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.room-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.room-card .btn {
+  background: #ff7f50;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+

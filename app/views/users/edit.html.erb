@@ -1,0 +1,12 @@
+<div class="settings">
+  <nav>
+    <%= link_to 'アカウント', account_user_path(@user), class: 'active' %>
+    <%= link_to 'プロフィール', profile_user_path(@user) %>
+  </nav>
+  <div class="content">
+    <h2>アカウント</h2>
+    <p>メールアドレス: <%= @user.email %></p>
+    <p>パスワード: *********</p>
+    <%= link_to '編集', edit_user_registration_path, class: 'edit-button' %>
+  </div>
+</div>

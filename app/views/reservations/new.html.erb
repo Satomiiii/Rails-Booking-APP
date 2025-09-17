@@ -1,0 +1,14 @@
+
+
+<%= form_with(model: [@room, @reservation], url: room_reservations_path(@room), method: :post) do |f| %>
+  <p>チェックインん: <%= @reservation.check_in %></p>
+  <p>チェックアウト: <%= @reservation.check_out %></p>
+  <p>日数: <%= @reservation.nights %></p>
+  <p>人数: <%= @reservation.guests %></p>
+  <p>お支払い金額: ¥<%= @reservation.total_amount %></p>
+
+  <%= link_to 'キャンセル', room_path(@room), class: 'btn btn-secondary' %>
+  <%= button_to '予約を確定', room_reservations_path(@room), method: :post, class: 'btn btn-primary' %>
+
+<% end %>
+

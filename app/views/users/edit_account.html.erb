@@ -1,0 +1,23 @@
+<div class="account-settings">
+  <h2>アカウント</h2>
+  <%= form_for(@user, url: update_account_user_path(@user), method: :patch) do |f| %>
+    <div>
+      <%= f.label :email, 'メールアドレス' %>
+      <%= f.email_field :email, required: true %>
+    </div>
+    <div>
+      <%= f.label :password, '変更後パスワード' %>
+      <%= f.password_field :password %>
+    </div>
+    <div>
+      <%= f.label :password_confirmation, '確認用パスワード' %>
+      <%= f.password_field :password_confirmation %>
+    </div>
+    <div>
+      <%= f.label :current_password, '現在のパスワード' %>
+      <%= f.password_field :current_password, required: true %>
+    </div>
+    <%= f.submit '保存', class: 'save-button' %>
+    <%= link_to 'キャンセル', user_path(@user), class: 'cancel-button' %>
+  <% end %>
+</div>

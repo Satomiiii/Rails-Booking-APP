@@ -1,0 +1,33 @@
+<h2 class="page-title">アカウント</h2>
+
+<div class="account-form">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <div class="form-group">
+      <%= f.label :email, "メールアドレス", class: "form-label" %>
+      <%= f.email_field :email, autofocus: true, class: "form-input" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password, "変更後パスワード", class: "form-label" %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-input" %>
+      <p class="form-note">※変更する場合のみ入力してください（空欄のままなら変更されません）</p>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation, "確認用パスワード", class: "form-label" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-input" %>
+      <p class="form-note">※パスワードを変更する場合のみ入力してください</p>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :current_password, "現在のパスワード", class: "form-label" %>
+      <%= f.password_field :current_password, autocomplete: "current-password", class: "form-input" %>
+      <p class="form-note">※メールアドレスやパスワードを変更する場合に必要です</p>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit "保存", class: "btn btn-primary" %>
+      <%= link_to "キャンセル", root_path, class: "btn btn-secondary" %>
+    </div>
+  <% end %>
+</div>
