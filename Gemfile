@@ -65,6 +65,6 @@ gem 'devise' # ユーザー認証用
 gem 'bootstrap', '~> 5.1.3' # デザイン用
 gem 'jquery-rails' # JavaScript用
 
-gem 'concurrent-ruby', '1.3.4'
+gem 'concurrent-ruby', '1.3.6'
 
 gem 'nkf'
