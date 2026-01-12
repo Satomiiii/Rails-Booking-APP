@@ -62,7 +62,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'psych', '~> 3.1'
 
 gem 'devise' # ユーザー認証用
-gem 'bootstrap', '~> 5.1.3' # デザイン用
+gem 'bootstrap', '~> 5.3.8' # デザイン用
 gem 'jquery-rails' # JavaScript用
 
 gem 'concurrent-ruby', '1.3.4'
